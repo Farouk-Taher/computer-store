@@ -1,0 +1,85 @@
+<div class="container-fluid content">
+  <div class="row">
+    <div class="col-md-3">
+      <br>
+      <ng-select [(ngModel)]="searchQueryModel.os" [items]="searchCriteriaModel.os"
+                 placeholder="Operating System">
+      </ng-select>
+      <ng-select [(ngModel)]="searchQueryModel.ram" [items]="searchCriteriaModel.ram"
+                 placeholder="Ram">
+      </ng-select>
+      <ng-select [(ngModel)]="searchQueryModel.cpu" [items]="searchCriteriaModel.cpu"
+                 placeholder="Processor">
+      </ng-select>
+      <ng-select [(ngModel)]="searchQueryModel.inches" [items]="searchCriteriaModel.inches"
+                 placeholder="Inches">
+      </ng-select>
+      <br>
+      Company
+      <input [(ngModel)]="searchQueryModel.company" type="text">
+      <br>
+      <br>
+      Product
+      <input [(ngModel)]="searchQueryModel.product" type="text">
+      <br>
+      <br>
+      <button (click)="searchSelected()">Search</button>
+    </div>
+    <div class="col-md-9">
+
+      <div style="text-align:center">
+        <h4>
+          Your Search Result
+        </h4>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Company</th>
+            <th scope="col">Product</th>
+            <th scope="col">Type</th>
+            <th *ngIf="notMobile" scope="col">Inches</th>
+            <th *ngIf="notMobile" scope="col">Resolution</th>
+            <th scope="col">CPU</th>
+            <th scope="col">RAM</th>
+            <th *ngIf="notMobile" scope="col">Memory</th>
+            <th *ngIf="notMobile" scope="col">Graphics</th>
+            <th *ngIf="notMobile" scope="col">OpSys</th>
+            <th *ngIf="notMobile" scope="col">Weight</th>
+            <th scope="col">Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of productCatalog | paginate: config">
+            <th scope="row">{{item.company}}</th>
+            <td>{{item.product}}</td>
+            <td>{{item.type}}</td>
+            <td *ngIf="notMobile">{{item.inches}}</td>
+            <td *ngIf="notMobile">{{item.resolution}}</td>
+            <td>{{item.cpu}}</td>
+            <td>{{item.ram}}</td>
+            <td *ngIf="notMobile">{{item.memory}}</td>
+            <td *ngIf="notMobile">{{item.graphics}}</td>
+            <td *ngIf="notMobile">{{item.os}}</td>
+            <td *ngIf="notMobile">{{item.weight}}</td>
+            <td>{{item.price}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <pagination-controls
+          (pageChange)="pageChanged($event)"
+          [autoHide]="autoHide"
+          [directionLinks]="directionLinks"
+          [maxSize]="maxSize"
+          [nextLabel]="labels.nextLabel"
+          [previousLabel]="labels.previousLabel"
+          [responsive]="responsive"
+          [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+          [screenReaderPageLabel]="labels.screenReaderPageLabel"
+
+          [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"></pagination-controls>
+
+      </div>
+    </div>
+  </div>
+</div>
