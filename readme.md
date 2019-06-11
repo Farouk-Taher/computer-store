@@ -1,6 +1,5 @@
 # Computer Store
 
-This prject made for IN3 company as a step of the hiring proccess
 
 # To build this project & Run it: 
 
